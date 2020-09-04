@@ -18,18 +18,6 @@ router.post('/', (req, res) => {
     })
 })
 
-// router.post('/:id/', (req, res) => {
-//     const {id} = req.params
-//     const newAction = req.body
-//     Projects.get(id)
-//     .then(value => {
-//         Projects.insert(newAction)
-//         res.status(201).json(value)
-//     })
-//     .catch(error => {
-//         res.status(500).json({error: "There was an error posting the Action."})
-//     })
-// })
 
 router.get('/', (req,res) => {
     Projects.get()
@@ -52,16 +40,17 @@ router.get('/:id', (req,res) => {
     })
 })
 
-// router.get('/:id/', (req,res) => {
-//     const {id} = req.params
-//     Projects.getProjectActions(id)
-//     .then(value => {
-//         res.status(200).json(value)
-//     })
-//     .catch(error => {
-//         res.status(500).json({error: "There was an error retrieving the Project's Actions."})
-//     })
-// })
+router.get('/:id/actions', (req,res) => {
+    const {id} = req.params
+    Projects.getProjectActions(id)
+    .then(value => {
+       
+        res.status(200).json(value)
+    })
+    .catch(error => {
+        res.status(500).json({error: "There was an error retrieving the Project's Actions."})
+    })
+})
 
 router.delete('/:id', (req, res) => {
     const {id} = req.params
